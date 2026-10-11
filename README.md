@@ -17,6 +17,17 @@ The project includes a machine learning pipeline, a FastAPI prediction API, an i
 - SQLite database for transaction history
 - Risk distribution chart and summary metrics
 
+## Dashboard Screenshots
+
+### 1. Dashboard Overview
+![Dashboard Overview](dashboard-overview.png)
+
+### 2. Transaction Prediction
+![Transaction Prediction](dashboard-prediction.png)
+
+### 3. Transaction History and Analytics
+![Transaction History and Analytics](dashboard-history.png)
+
 ## Technologies Used
 
 - **Language:** Python
