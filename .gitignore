@@ -1,0 +1,42 @@
+# Virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Jupyter Notebook
+.ipynb_checkpoints/
+
+# Local database
+database/*.db
+
+# Raw dataset
+data/raw/
+
+# Temporary files
+*.tmp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Python environment files
+.env
+
+# Large trained model files
+models/*.pkl
+models/*.pth
+
+# Processed datasets
+data/processed/
+
+# Temporary/unused notebooks
+Untitled*.ipynb
