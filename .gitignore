@@ -40,3 +40,8 @@ data/processed/
 
 # Temporary/unused notebooks
 Untitled*.ipynb
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
