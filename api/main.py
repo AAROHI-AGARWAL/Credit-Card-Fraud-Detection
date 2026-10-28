@@ -1,5 +1,5 @@
 from fastapi import FastAPI, HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 import sys
 import os
 
@@ -29,8 +29,12 @@ app = FastAPI(
 # -----------------------------
 
 class Transaction(BaseModel):
-
-    features: list[float]
+    features: list[float] = Field(
+        ...,
+        min_length=30,
+        max_length=30,
+        description="Exactly 30 features: Time, V1-V28, and Amount"
+    )
 
 
 # -----------------------------
@@ -43,6 +47,13 @@ def home():
         "message": "Credit Card Fraud Detection API is running"
     }
 
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy",
+        "message": "Credit Card Fraud Detection API is operational"
+    }
+
 
 # -----------------------------
 # Prediction endpoint
@@ -52,11 +63,5 @@ from fastapi import HTTPException
 
 @app.post("/predict")
 def predict(transaction: Transaction):
-    if len(transaction.features) != 30:
-        raise HTTPException(
-            status_code=400,
-            detail="Transaction must contain exactly 30 features"
-        )
-
     result = predict_transaction(transaction.features)
     return result

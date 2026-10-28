@@ -40,7 +40,13 @@ def test_prediction_with_wrong_number_of_features():
 
     response = client.post("/predict", json=transaction)
 
-    assert response.status_code == 400
-    assert response.json()["detail"] == (
-        "Transaction must contain exactly 30 features"
-    )
+    assert response.status_code == 422
+
+def test_health_endpoint():
+    response = client.get("/health")
+
+    assert response.status_code == 200
+    assert response.json() == {
+        "status": "healthy",
+        "message": "Credit Card Fraud Detection API is operational"
+    }
