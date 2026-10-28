@@ -2,11 +2,18 @@ import joblib
 import torch
 import numpy as np
 
-from anomaly_detection import (
-    Autoencoder,
-    get_isolation_forest_scores,
-    calculate_reconstruction_errors
-)
+try:
+    from .anomaly_detection import (
+        Autoencoder,
+        get_isolation_forest_scores,
+        calculate_reconstruction_errors
+    )
+except ImportError:
+    from anomaly_detection import (
+        Autoencoder,
+        get_isolation_forest_scores,
+        calculate_reconstruction_errors
+    )
 
 
 # -----------------------------
