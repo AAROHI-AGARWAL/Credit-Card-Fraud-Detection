@@ -40,5 +40,7 @@ def test_prediction_with_wrong_number_of_features():
 
     response = client.post("/predict", json=transaction)
 
-    assert response.status_code == 200
-    assert "error" in response.json()
+    assert response.status_code == 400
+    assert response.json()["detail"] == (
+        "Transaction must contain exactly 30 features"
+    )

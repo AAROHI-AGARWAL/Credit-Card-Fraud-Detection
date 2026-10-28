@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import sys
 import os
@@ -48,16 +48,15 @@ def home():
 # Prediction endpoint
 # -----------------------------
 
+from fastapi import HTTPException
+
 @app.post("/predict")
 def predict(transaction: Transaction):
-
     if len(transaction.features) != 30:
-        return {
-            "error": "Transaction must contain exactly 30 features"
-        }
+        raise HTTPException(
+            status_code=400,
+            detail="Transaction must contain exactly 30 features"
+        )
 
-    result = predict_transaction(
-        transaction.features
-    )
-
+    result = predict_transaction(transaction.features)
     return result
